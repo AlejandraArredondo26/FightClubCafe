@@ -1,0 +1,7 @@
+{
+  "name": "fightClub",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
