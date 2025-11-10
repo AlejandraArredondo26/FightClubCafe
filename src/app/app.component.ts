@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+interface Elemento {
+  icono: string;
+  nombre: string;
+  ruta: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -7,5 +14,21 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  elementos: Elemento[] = [
+    { icono: 'home-outline', nombre: 'Inicio', ruta: '/inicio' },
+    { icono: 'chatbubbles-outline', nombre: 'Foro', ruta: '/foro' },
+    { icono: 'images-outline', nombre: 'Galería', ruta: '/galeria' },
+    { icono: 'search-outline', nombre: 'Buscar', ruta: '/buscar' },
+  ];
+
+  disableMenu = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        const url = ev.urlAfterRedirects || ev.url;
+        this.disableMenu = url.includes('/login');
+      }
+    });
+  }
 }

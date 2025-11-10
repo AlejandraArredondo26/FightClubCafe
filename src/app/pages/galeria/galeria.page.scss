@@ -1,0 +1,142 @@
+/* ===== Paleta cálida taberna ===== */
+:root {
+  --tavern-bg-1: #3b2a22;   /* madera oscura */
+  --tavern-bg-2: #5a3f31;   /* veta intermedia */
+  --tavern-accent: #b37b52; /* café claro */
+  --tavern-ink: #e7d6c4;    /* tinta cálida */
+  --tavern-gold: #caa66a;   /* dorado suave */
+}
+
+/* Fondo tipo madera (tablas) */
+.wood-bg {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,0)) 0 0/100% 100%,
+    repeating-linear-gradient(
+      90deg,
+      var(--tavern-bg-1) 0 140px,
+      var(--tavern-bg-2) 140px 280px
+    );
+  color: var(--tavern-ink);
+}
+
+/* Encabezado */
+.title-row {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.tavern-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: var(--tavern-gold);
+  text-shadow: 0 2px 0 rgba(0,0,0,.3);
+}
+.subtitle {
+  margin: 4px 0 12px;
+  opacity: .85;
+}
+
+/* Chips de filtro */
+.chip {
+  margin: 4px 6px 10px 0;
+  --background: rgba(255,255,255,.06);
+  --color: var(--tavern-ink);
+  --border-color: var(--tavern-gold);
+}
+
+/* Grid */
+.gallery-grid {
+  --ion-grid-column-padding: 10px;
+}
+
+/* Tarjeta pixel-art con vibe 2.5D */
+.pixel-card {
+  position: relative;
+  overflow: visible; /* para la sombra iso */
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(2px);
+  transform: translateZ(0);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.pixel-card:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.05);
+}
+
+/* Sombra isométrica sutil */
+.iso-shadow {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -10px;
+  height: 10px;
+  background: radial-gradient(60% 100% at 50% 0%, rgba(0,0,0,.35), transparent 70%);
+  pointer-events: none;
+}
+
+/* Títulos */
+.card-title {
+  color: var(--tavern-ink);
+}
+.card-sub {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  color: rgba(231,214,196,.9);
+}
+.badge {
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* Imagen “pixelada” */
+.pixel-img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #2b201a;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.pixel-img.big {
+  max-width: 512px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Estado vacío */
+.empty {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  color: rgba(231,214,196,.8);
+  margin-top: 24px;
+}
+.empty ion-icon {
+  font-size: 44px;
+  color: var(--tavern-gold);
+}
+
+/* Modal del visor */
+.tavern-modal {
+  --background: rgba(35, 25, 20, .95);
+}
+.viewer {
+  --background: transparent;
+}
+.viewer-inner {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 12px;
+}
+.meta {
+  color: var(--tavern-ink);
+}
+.meta-desc {
+  opacity: .9;
+}

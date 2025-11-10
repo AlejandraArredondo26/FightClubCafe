@@ -1,0 +1,79 @@
+<app-header titulo="Inicio"></app-header>
+<ion-content class="ion-padding">
+
+  <div class="banner">
+    <img src="assets/images/tavern.jpeg" alt="Tavern banner" />
+    <div class="banner-text">
+      <h1>Fight Club Cafe</h1>
+      <p>Bienvenido a Fight Club Cafe</p>
+      <ion-button expand="block" shape="round" color="dark" class="ver-mas-btn" (click)="irAInfo()">
+        Ver m&aacute;s
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-button routerLink="/login" expand="block" color="dark" style="margin-bottom:12px">Ir a Login</ion-button>
+
+  <!-- Informaci&oacute;n del videojuego (arriba de los personajes) -->
+  <ion-card class="info-card" #infoSection>
+    <ion-card-header>
+      <ion-card-title>
+        &iquest;De qu&eacute; trata Fight Club Cafe?
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Fight Club Cafe es un videojuego ambientado en un mundo de fantas&iacute;a medieval
+        donde los jugadores pueden enfrentarse a otros dentro de una taberna-cafeter&iacute;a.
+        Aqu&iacute;, los distintos tipos de caf&eacute; otorgan poderes &uacute;nicos a los combatientes,
+        creando partidas din&aacute;micas y divertidas.
+      </p>
+      <p>
+        Su objetivo principal es ayudar a reducir el nivel de estr&eacute;s en universitarios,
+        ofreciendo un escenario familiar (la cafeter&iacute;a) donde relajarse y desconectarse
+        a trav&eacute;s de partidas r&aacute;pidas y entretenidas.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ng-container *ngIf="cargando">
+    <ion-card class="perfil-card">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="assets/images/tavern.jpeg" alt="Cargando" />
+        </ion-avatar>
+        <ion-label>
+          <h2>Cargando h&eacute;roes...</h2>
+          <p>Por favor espera</p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </ng-container>
+
+  <ng-container *ngFor="let p of personajesRecientes">
+  <ion-card class="perfil-card" (click)="abrirModal(p.id)">
+    <ion-item lines="none" button detail="false" (click)="abrirModal(p.id); $event.stopPropagation()">
+      <ion-avatar slot="start">
+        <img [src]="p.imagen || 'assets/images/tavern.jpeg'" [alt]="p.nombre" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ p.nombre }}</h2>
+        <p>{{ p.descripcion }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ng-container>
+
+
+  <div class="social-section">
+    <h3>S&iacute;guenos</h3>
+    <p>Encu&eacute;ntranos en nuestras redes</p>
+    <div class="social-icons">
+      <ion-icon name="logo-linkedin"></ion-icon>
+      <ion-icon name="logo-instagram"></ion-icon>
+      <ion-icon name="logo-tiktok"></ion-icon>
+    </div>
+  </div>
+
+</ion-content>
+

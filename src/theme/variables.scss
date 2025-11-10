@@ -1,2 +1,92 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+// Cozy 16-bit warm theme
+// Reference: https://ionicframework.com/docs/theming
+
+:root {
+  /* Brand palette */
+  --ion-color-primary: #e29538;         /* burnt amber */
+  --ion-color-primary-rgb: 226, 149, 56;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #c78331;
+  --ion-color-primary-tint: #e8a856;
+
+  --ion-color-secondary: #c75b39;       /* terracotta orange */
+  --ion-color-secondary-rgb: 199, 91, 57;
+  --ion-color-secondary-contrast: #1b0f0b;
+  --ion-color-secondary-contrast-rgb: 27, 15, 11;
+  --ion-color-secondary-shade: #b25133;
+  --ion-color-secondary-tint: #cf6e50;
+
+  --ion-color-tertiary: #a0402d;        /* brick */
+  --ion-color-tertiary-rgb: 160, 64, 45;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #8e3928;
+  --ion-color-tertiary-tint: #af5a46;
+
+  --ion-color-success: #9fb35c;         /* muted moss */
+  --ion-color-success-rgb: 159, 179, 92;
+  --ion-color-success-contrast: #1b0f0b;
+  --ion-color-success-contrast-rgb: 27, 15, 11;
+  --ion-color-success-shade: #8fa251;
+  --ion-color-success-tint: #aec071;
+
+  --ion-color-warning: #ffb74d;         /* warm amber */
+  --ion-color-warning-rgb: 255, 183, 77;
+  --ion-color-warning-contrast: #1b0f0b;
+  --ion-color-warning-contrast-rgb: 27, 15, 11;
+  --ion-color-warning-shade: #e0a247;
+  --ion-color-warning-tint: #ffc470;
+
+  --ion-color-danger: #bb3e1a;          /* rustic red */
+  --ion-color-danger-rgb: 187, 62, 26;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #a83717;
+  --ion-color-danger-tint: #c85739;
+
+  --ion-color-light: #2b1a14;           /* dark surface */
+  --ion-color-light-rgb: 43, 26, 20;
+  --ion-color-light-contrast: #f0d2ae;
+  --ion-color-light-contrast-rgb: 240, 210, 174;
+  --ion-color-light-shade: #231511;
+  --ion-color-light-tint: #34211c;
+
+  --ion-color-medium: #4b2e24;
+  --ion-color-medium-rgb: 75, 46, 36;
+  --ion-color-medium-contrast: #f0d2ae;
+  --ion-color-medium-contrast-rgb: 240, 210, 174;
+  --ion-color-medium-shade: #40271f;
+  --ion-color-medium-tint: #5a392d;
+
+  --ion-color-dark: #1b0f0b;            /* deepest coffee */
+  --ion-color-dark-rgb: 27, 15, 11;
+  --ion-color-dark-contrast: #f5e1c8;
+  --ion-color-dark-contrast-rgb: 245, 225, 200;
+  --ion-color-dark-shade: #160c09;
+  --ion-color-dark-tint: #26130f;
+
+  /* Backgrounds and text */
+  --ion-background-color: #1f1410; /* tavern dark */
+  --ion-text-color: #f5e1c8;        /* warm light */
+  --ion-item-background: #2b1a14;
+
+  /* Warm gradient for pages */
+  --app-warm-gradient: linear-gradient(180deg, #1f1410 0%, #2b1a14 45%, #3a2018 100%);
+
+  /* App surface (cards/items) */
+  --app-surface: #2b1a14;
+
+  /* Radius and elevation tokens for 2.5D vibe */
+  --cozy-radius: 16px;
+  --cozy-elevation: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Optional dark palette alignment with system */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #140c09;
+    --ion-text-color: #f1d9bf;
+    --ion-item-background: #1d120e;
+  }
+}

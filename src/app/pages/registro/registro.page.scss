@@ -1,0 +1,53 @@
+/* Estilo igual a Login (tema taberna oscuro) */
+ion-content, .login-bg {
+  --background: none;
+  background:
+    linear-gradient(180deg, rgba(27,15,11,.75), rgba(43,26,20,.92)),
+    url('/assets/images/tavern.jpeg') center/cover no-repeat fixed;
+  font-family: 'VT323', monospace;
+  color: var(--ion-text-color);
+}
+
+.login-container {
+  min-height: calc(100vh - 56px);
+  display: grid;
+  place-items: center;
+  padding: 24px 20px;
+}
+
+.login-card {
+  width: 88%;
+  max-width: 420px;
+  background: rgba(43, 26, 20, .92);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+}
+
+.card-header ion-card-title { color: #ffb74d; font-weight: 800; }
+.card-header ion-card-subtitle { color: #e6b88d; }
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--app-surface);
+  border: 1px solid #e3b08f;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.field ion-icon { font-size: 22px; color: #ffdca8; }
+.field input { flex: 1; border: none; outline: none; background: transparent; color: #f5e1c8; font-size: 16px; }
+.field input::placeholder { color: #9d6e5a; }
+.field:focus-within { border-color: #5d4037; box-shadow: 0 0 0 2px rgba(224, 122, 95, .18); }
+
+.submit-btn {
+  --background: #5d4037;
+  --color: #fff;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 16px rgba(224, 122, 95, .25);
+}
+
+.auth-links { display: flex; justify-content: center; gap: 6px; margin-top: 10px; font-size: 14px; }
+.auth-links a { color: #ffb74d; font-weight: 600; }

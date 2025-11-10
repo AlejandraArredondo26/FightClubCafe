@@ -1,0 +1,21 @@
+ion-menu { --background: var(--ion-color-dark); }
+
+ion-menu ion-header ion-toolbar { --background: var(--ion-color-dark); --color: var(--ion-color-dark-contrast); }
+
+ion-menu ion-title { font-weight: 800; color: var(--ion-color-warning); }
+
+ion-menu ion-content { --background: var(--ion-color-dark); }
+
+ion-menu ion-list[inset] {
+  background: transparent;
+  padding: 6px 8px;
+}
+
+ion-menu ion-item {
+  --background: var(--app-surface);
+  border-radius: 12px;
+  margin: 6px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+ion-menu ion-item ion-icon { color: var(--ion-color-warning); }

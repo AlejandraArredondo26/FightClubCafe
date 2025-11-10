@@ -35,3 +35,76 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Global cozy styles */
+:root {
+  --app-radius: var(--cozy-radius, 16px);
+}
+
+html, body, ion-app, ion-content {
+  font-family: 'VT323', monospace;
+  color: var(--ion-text-color);
+}
+
+ion-content {
+  --background: var(--app-warm-gradient);
+}
+
+/* Cards */
+ion-card {
+  border-radius: var(--app-radius);
+  background: var(--app-surface);
+  box-shadow: var(--cozy-elevation);
+  border: 1px solid rgba(216, 150, 110, 0.45);
+}
+ion-card-title { color: var(--ion-color-warning); font-weight: 800; }
+ion-card-subtitle { color: var(--ion-color-secondary); }
+
+/* Buttons */
+ion-button {
+  --border-radius: 12px;
+  --box-shadow: 0 3px 10px rgba(62, 39, 35, 0.25);
+}
+ion-button[color="primary"],
+ion-button:not([color]) {
+  --background: var(--ion-color-secondary);
+  --color: #fff1dc;
+}
+ion-button[color="secondary"] {
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-secondary-contrast);
+}
+
+/* Toolbar / Header */
+ion-toolbar {
+  --background: var(--ion-color-dark);
+  --color: var(--ion-color-dark-contrast);
+  --min-height: 60px;
+  --border-width: 0 0 1px 0;
+  --border-color: rgba(160, 96, 64, 0.4);
+}
+
+/* Lists & Items */
+ion-list[inset] {
+  background: transparent;
+}
+ion-item {
+  --background: var(--app-surface);
+  --color: var(--ion-text-color);
+  border-radius: 12px;
+  margin: 4px 8px;
+}
+ion-item::part(native) {
+  border: 1px solid rgba(216, 150, 110, 0.45);
+}
+
+/* Inputs */
+ion-input, ion-textarea, ion-select {
+  --background: #fff;
+  --color: var(--ion-text-color);
+  --border-color: rgba(216, 180, 150, 0.65);
+  --highlight-color-focused: var(--ion-color-dark);
+}
+
+/* Icons */
+ion-icon { color: var(--ion-text-color); }

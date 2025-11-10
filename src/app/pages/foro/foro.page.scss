@@ -1,0 +1,110 @@
+.foro-bg {
+  --background: none;
+  background:
+    linear-gradient(180deg, rgba(27,15,11,.75), rgba(43,26,20,.92)),
+    url('/assets/images/tavern.jpeg') center/cover no-repeat fixed;
+  font-family: 'VT323', monospace;
+  color: var(--ion-text-color);
+}
+
+/* Tarjetas con vibe taberna */
+ion-card {
+  background: var(--app-surface);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  border: 1px solid #8c5237;
+}
+
+ion-card-title { color: #ffb74d; }
+ion-card-subtitle { color: #e6b88d; }
+
+/* Inputs/textarea en estilo cálido */
+ion-item {
+  --background: var(--app-surface);
+  --color: var(--ion-text-color);
+  --border-radius: 12px;
+  margin-top: 8px;
+  border: 1px solid #8c5237;
+}
+
+ion-textarea, ion-input { --color: var(--ion-text-color); }
+
+.actions ion-button,
+.thread-actions ion-button {
+  --background: var(--ion-color-secondary);
+  --color: #fff1dc;
+  --border-radius: 10px;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.mt-3 {
+  margin-top: 12px;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.thread-title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  justify-content: space-between;
+}
+
+.timestamp {
+  font-weight: normal;
+}
+
+.thread-actions {
+  display: flex;
+  gap: .25rem;
+  margin: .25rem 0 .5rem;
+}
+
+.reply-item {
+  --padding-start: 4px;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.reply-time {
+  color: var(--ion-color-medium);
+  font-size: .85rem;
+}
+
+.empty {
+  margin-top: 24px;
+  display: grid;
+  place-items: center;
+  color: var(--ion-color-medium);
+}
+
+.empty ion-icon {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+/* Respuestas con borde lateral */
+.reply-item {
+  --padding-start: 8px;
+  border-left: 3px solid #cf6e50;
+  margin-left: 6px;
+  border-radius: 8px;
+}
+
+.timestamp {
+  background: #3a2018;
+  color: #f1d3b3;
+  border-radius: 8px;
+  padding: 2px 6px;
+}

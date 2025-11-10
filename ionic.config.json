@@ -3,5 +3,10 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "server": {
+    "host": "localhost",
+    "port": 8100,
+    "open": true
+  }
 }

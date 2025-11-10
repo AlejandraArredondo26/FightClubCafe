@@ -1,0 +1,116 @@
+<app-header titulo="Foro"></app-header>
+
+<ion-content [fullscreen]="true" class="ion-padding foro-bg">
+
+  <!-- Crear nuevo hilo -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Nuevo comentario</ion-card-title>
+      <ion-card-subtitle>Comparte tu duda o tema</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="threadForm" (ngSubmit)="addThread()">
+        <ion-item>
+          <ion-label position="stacked">Tu nombre</ion-label>
+          <ion-input formControlName="author" placeholder="Ej. Ana"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="threadForm.get('author')?.touched && threadForm.get('author')?.invalid">
+          El nombre es obligatorio
+        </ion-note>
+
+        <ion-item class="mt-3">
+          <ion-label position="stacked">Comentario</ion-label>
+          <ion-textarea formControlName="text" placeholder="Escribe tu comentario..." autoGrow="true"></ion-textarea>
+        </ion-item>
+        <ion-note color="danger" *ngIf="threadForm.get('text')?.touched && threadForm.get('text')?.invalid">
+          El comentario es obligatorio
+        </ion-note>
+
+        <div class="actions">
+          <ion-button type="submit" [disabled]="threadForm.invalid" expand="block">Publicar</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de hilos -->
+  <ion-list *ngIf="threads.length; else emptyState">
+    <ion-item-divider color="light">Comentarios recientes</ion-item-divider>
+
+    <ng-container *ngFor="let t of threads; trackBy: trackByThread">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="thread-title">
+            <span>{{ t.author }}</span>
+            <ion-badge color="medium" class="timestamp">{{ t.createdAt | date:'short' }}</ion-badge>
+          </ion-card-title>
+          <ion-card-subtitle class="pre-wrap">{{ t.text }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- Respuestas -->
+          <ion-list *ngIf="t.replies?.length">
+            <ion-item *ngFor="let r of t.replies; trackBy: trackByReply" lines="none" class="reply-item">
+              <ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+              <ion-label>
+                <div class="reply-header">
+                  <b>{{ r.author }}</b>
+                  <span class="reply-time">{{ r.createdAt | date:'short' }}</span>
+                </div>
+                <div class="pre-wrap">{{ r.text }}</div>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+
+          <!-- Acciones del hilo -->
+          <div class="thread-actions">
+            <ion-button size="small" fill="clear" (click)="toggleReplyForm(t)">
+              <ion-icon slot="start" name="arrow-undo-outline"></ion-icon>
+              Responder
+            </ion-button>
+            <ion-button size="small" fill="clear" color="medium" (click)="deleteThread(t.id)">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Borrar
+            </ion-button>
+          </div>
+
+          <!-- Formulario de respuesta -->
+          <form *ngIf="t.ui?.showReplyForm" [formGroup]="replyForm" (ngSubmit)="addReply(t)">
+            <ion-item>
+              <ion-label position="stacked">Tu nombre</ion-label>
+              <ion-input formControlName="author" placeholder="Ej. Luis"></ion-input>
+            </ion-item>
+            <ion-note color="danger" *ngIf="replyForm.get('author')?.touched && replyForm.get('author')?.invalid">
+              El nombre es obligatorio
+            </ion-note>
+
+            <ion-item class="mt-3">
+              <ion-label position="stacked">Respuesta</ion-label>
+              <ion-textarea formControlName="text" placeholder="Escribe tu respuesta..." autoGrow="true"></ion-textarea>
+            </ion-item>
+            <ion-note color="danger" *ngIf="replyForm.get('text')?.touched && replyForm.get('text')?.invalid">
+              La respuesta es obligatoria
+            </ion-note>
+
+            <div class="actions">
+              <ion-button type="submit" [disabled]="replyForm.invalid">Enviar respuesta</ion-button>
+              <ion-button type="button" fill="clear" color="medium" (click)="toggleReplyForm(t)">Cancelar</ion-button>
+            </div>
+          </form>
+
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </ion-list>
+
+  <ng-template #emptyState>
+    <div class="empty">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <p>No hay comentarios aún.</p>
+      <small>¡Sé el primero en publicar!</small>
+    </div>
+  </ng-template>
+
+</ion-content>
+

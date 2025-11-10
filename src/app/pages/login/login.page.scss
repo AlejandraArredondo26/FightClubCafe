@@ -1,0 +1,130 @@
+ion-content, .login-bg {
+  --background: none;
+  background:
+    linear-gradient(180deg, rgba(27,15,11,.75), rgba(43,26,20,.92)),
+    url('/assets/images/tavern.jpeg') center/cover no-repeat fixed;
+  font-family: 'VT323', monospace;
+  color: var(--ion-text-color);
+}
+
+/* Solo en esta página, ocultamos cualquier overlay global que pudiera quedar abierto */
+:host ::ng-deep ion-modal,
+:host ::ng-deep ion-popover,
+:host ::ng-deep ion-action-sheet,
+:host ::ng-deep ion-alert,
+:host ::ng-deep ion-loading,
+:host ::ng-deep ion-toast,
+:host ::ng-deep ion-backdrop {
+  display: none !important;
+}
+
+/* Hero banner */
+.login-container {
+  min-height: calc(100vh - 56px);
+  display: grid;
+  place-items: center; /* centra vertical y horizontal */
+  padding: 24px 20px; /* deja respiración en los bordes */
+}
+
+/* Card estilo taberna */
+.login-card {
+  width: 88%;
+  max-width: 420px;
+  background: rgba(43, 26, 20, .92);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  margin: 0 auto;
+}
+.card-header ion-card-title { color: #ffb74d; font-weight: 800; }
+.card-header ion-card-subtitle { color: #e6b88d; }
+.iso-shadow { position: absolute; left: 16px; right: 16px; bottom: -10px; height: 10px; background: radial-gradient(60% 100% at 50% 0%, rgba(0,0,0,.3), transparent 70%); pointer-events: none; }
+
+/* Campos del formulario */
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--app-surface);
+  border: 1px solid #e3b08f;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+.field ion-icon { font-size: 22px; color: #ffdca8; }
+.field input { flex: 1; border: none; outline: none; background: transparent; color: #f5e1c8; font-size: 16px; }
+.field input::placeholder { color: #9d6e5a; }
+.field:focus-within { border-color: #5d4037; box-shadow: 0 0 0 2px rgba(224, 122, 95, .18); }
+
+@media (max-width: 390px) {
+  .login-card { width: 92%; }
+  .field { padding: 10px; }
+}
+
+.submit-btn {
+  --background: #5d4037;
+  --color: #fff;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 16px rgba(224, 122, 95, .25);
+}
+
+.header-title { color: #ffb74d; font-weight: 700; }
+
+.auth-links {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.auth-links span { color: #e6b88d; }
+.auth-links a { color: #ffb74d; font-weight: 600; }
+
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 56px);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--app-surface);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+ion-card-title { color: #ffb74d; font-weight: 700; }
+
+ion-card-subtitle { color: #e6b88d; }
+
+.input-item {
+  --background: var(--app-surface);
+  --color: var(--ion-text-color);
+  --border-color: #8c5237;
+  --highlight-color-focused: var(--ion-color-warning);
+  border: 1px solid #8c5237;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+}
+ion-item.input-item ion-label { color: var(--ion-text-color); }
+ion-item.input-item ion-input { --color: var(--ion-text-color); }
+
+/* Asegura eventos dentro del shadow DOM de ion-input */
+ion-input::part(native),
+ion-input::part(container) {
+  pointer-events: auto;
+}
+
+.submit-btn {
+  --background: #3e2723;
+  --color: #fff;
+  --border-radius: 12px;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,78 @@
+<app-header titulo="Galería"></app-header>
+
+<ion-content [fullscreen]="true" class="ion-padding wood-bg">
+
+  <!-- Encabezado -->
+  <div class="title-row">
+    <h2 class="tavern-title">Galería de Personajes</h2>
+    <p class="subtitle">Estética 2.5D • 16-bits • Taberna Cafetería • Tonos cafés cálidos</p>
+  </div>
+
+  <!-- Filtros -->
+  <ion-chip
+    *ngFor="let t of tags"
+    [outline]="selectedTag !== t.key"
+    color="warning"
+    class="chip"
+    (click)="applyFilter(t.key)"
+  >
+    <ion-icon [name]="selectedTag === t.key ? 'pricetag' : 'pricetag-outline'"></ion-icon>
+    <ion-label>{{ t.label }}</ion-label>
+  </ion-chip>
+
+  <!-- Grid de tarjetas -->
+  <ion-grid fixed class="gallery-grid">
+    <ion-row>
+      <ion-col
+        size="12" sizeSm="6" sizeMd="4" sizeLg="3"
+        *ngFor="let it of filtered; trackBy: trackBySrc"
+      >
+        <ion-card class="pixel-card" (click)="openViewer(it)" button>
+          <div class="iso-shadow"></div>
+          <ion-img [src]="it.src" [alt]="it.name" class="pixel-img"></ion-img>
+          <ion-card-header>
+            <ion-card-title class="card-title">{{ it.name }}</ion-card-title>
+            <ion-card-subtitle class="card-sub">
+              <ion-badge color="tertiary" class="badge">{{ it.tag }}</ion-badge>
+              <span *ngIf="it.desc" class="desc">{{ it.desc }}</span>
+            </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Estado vacío -->
+  <div class="empty" *ngIf="!filtered.length">
+    <ion-icon name="cafe-outline"></ion-icon>
+    <p>No hay imágenes para este filtro.</p>
+  </div>
+
+  <!-- Visor modal -->
+  <ion-modal [isOpen]="viewerOpen" (didDismiss)="closeViewer()" class="tavern-modal">
+    <ng-template>
+      <ion-header translucent>
+        <ion-toolbar color="dark">
+          <ion-title>{{ current?.name }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button onClick="dismiss" (click)="closeViewer()">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding viewer">
+        <div class="viewer-inner">
+          <img *ngIf="current" [src]="current.src" [alt]="current.name" class="pixel-img big">
+          <div class="meta">
+            <ion-badge color="tertiary" class="badge">{{ current?.tag }}</ion-badge>
+            <p class="meta-desc" *ngIf="current?.desc">{{ current?.desc }}</p>
+          </div>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
+

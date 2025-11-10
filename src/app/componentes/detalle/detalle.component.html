@@ -1,0 +1,55 @@
+﻿<ion-content class="detalle-content">
+  <ng-container *ngIf="detallePersonaje as p">
+    <!-- Banner -->
+    <div class="detalle-banner">
+      <img [src]="p.imagen || 'assets/images/tavern.jpeg'" [alt]="p.nombre" />
+      <div class="overlay"></div>
+      <ion-button fill="clear" class="btn-cerrar" (click)="cerrar()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+
+      <div class="detalle-head">
+        <div class="detalle-avatar">
+          <img [src]="p.imagen || 'assets/images/tavern.jpeg'" [alt]="p.nombre" />
+        </div>
+        <div class="titulo">
+          <h1>{{ p.nombre }}</h1>
+          <ion-badge [ngClass]="'badge-rareza ' + rareza">{{ rareza }}</ion-badge>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta de estadísticas -->
+    <ion-card class="detalle-card ion-padding" [ngClass]="rareza">
+      <ion-card-title>Estadísticas</ion-card-title>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="label">
+            <ion-icon name="flame-outline"></ion-icon>
+            <span>Daño</span>
+            <b>{{ p.dano }}</b>
+          </div>
+          <ion-progress-bar color="danger" [value]="p.dano / 10"></ion-progress-bar>
+        </div>
+
+        <div class="stat">
+          <div class="label">
+            <ion-icon name="speedometer-outline"></ion-icon>
+            <span>Velocidad</span>
+            <b>{{ p.velocidad }}</b>
+          </div>
+          <ion-progress-bar color="tertiary" [value]="p.velocidad / 10"></ion-progress-bar>
+        </div>
+      </div>
+
+      <div class="meta-grid">
+        <div>
+          <small>Descripción</small>
+          <p>{{ p.descripcion }}</p>
+        </div>
+      </div>
+    </ion-card>
+
+    <ion-button expand="block" color="dark" (click)="cerrar()">Cerrar</ion-button>
+  </ng-container>
+</ion-content>

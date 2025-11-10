@@ -1,0 +1,86 @@
+ion-content {
+  --background: var(--app-warm-gradient);
+  font-family: 'VT323', monospace;
+  color: var(--ion-text-color);
+}
+
+.banner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 200px;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55) saturate(1.1);
+  }
+
+  .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffdca8;
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .ver-mas-btn {
+      --background: var(--ion-color-secondary);
+      --color: #fff1dc;
+      --border-radius: 12px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.perfil-card {
+  background-color: var(--app-surface);
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+
+  ion-avatar img { border: 2px solid #8c5237; }
+  ion-label h2 { color: #ffdca8; font-weight: 600; }
+  ion-label p { color: #e6b88d; font-size: 0.85rem; }
+}
+
+.social-section {
+  text-align: center;
+  margin-top: 30px;
+
+  h3 { color: #ffb74d; font-size: 1rem; margin-bottom: 4px; }
+
+/* Cozy, warm info card styles */
+.info-card {
+  background: var(--app-surface); /* warm peach */
+  border-radius: 16px;
+  border: 1px solid #e3b08f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+  margin-top: 12px;
+
+  ion-card-title { color: #ffb74d; font-weight: 700; }
+  ion-card-content p { color: #f1d3b3; line-height: 1.4; margin-bottom: 8px; }
+}
+
+  p { color: #e6b88d; font-size: 0.85rem; margin-bottom: 12px; }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+
+    ion-icon { font-size: 24px; color: #ffb74d; transition: transform 0.2s ease; }
+    ion-icon:hover { transform: scale(1.2); }
+  }
+}
