@@ -1,29 +1,73 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Personajes } from './personajes';
 
+import { HttpClientModule } from '@angular/common/http';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { firebaseConfig } from 'src/environments/firebaseConfig';
+
 describe('Personajes service', () => {
   let service: Personajes;
-  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [HttpClientTestingModule] });
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+      providers: [
+        provideFirebaseApp(() => initializeApp(firebaseConfig)),
+        provideFirestore(() => getFirestore()),
+        Personajes
+      ]
+    });
+
     service = TestBed.inject(Personajes);
-    httpMock = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => httpMock.verify());
-
-  it('fetches and slices heroes by limit', () => {
-    const mock = Array.from({ length: 30 }).map((_, i) => ({ id: i + 1, name: `H${i+1}` }));
-    let res: any[] = [];
-
-    service.getHeroes(10).subscribe(r => (res = r));
-    const req = httpMock.expectOne('https://akabab.github.io/superhero-api/api/all.json');
-    expect(req.request.method).toBe('GET');
-    req.flush(mock);
-
-    expect(res.length).toBe(10);
-    expect(res[0].id).toBe(1);
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
+
+  // ==========================================
+  //         getPersonajes() TEST REAL
+  // ==========================================
+  it('getPersonajes debe emitir un array', (done) => {
+    const obs$ = service.getPersonajes();
+
+    expect(obs$).toBeTruthy();
+    expect(typeof obs$.subscribe).toBe('function');
+
+    obs$.subscribe({
+      next: (data) => {
+        expect(Array.isArray(data)).toBeTrue();
+        done();
+      },
+      error: (e) => {
+        fail('Error en getPersonajes: ' + e);
+        done();
+      }
+    });
+  });
+
+  // ==========================================
+  //    getPersonajesDetalle(id) TEST REAL
+  // ==========================================
+  it('getPersonajesDetalle debe emitir un objeto', (done) => {
+    const idPrueba = 'personaje1';
+
+    const obs$ = service.getPersonajesDetalle(idPrueba);
+
+    expect(obs$).toBeTruthy();
+    expect(typeof obs$.subscribe).toBe('function');
+
+    obs$.subscribe({
+      next: (data) => {
+        expect(typeof data).toBe('object');
+        done();
+      },
+      error: (e) => {
+        fail('Error en getPersonajesDetalle: ' + e);
+        done();
+      }
+    });
+  });
+
 });

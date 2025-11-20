@@ -5,12 +5,30 @@ import { IonContent, ModalController, AngularDelegate } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { InicioPage } from './inicio.page';
 import { Personajes } from 'src/app/services/personajes';
-import { Hero } from 'src/app/interfaces/interfaces';
+import { Personaje } from 'src/app/interfaces/interfaces';
 
+// ====== STUB CORRECTAMENTE ESTRUCTURADO ======
 class PersonajesStub {
-  getHeroes(limit: number) {
-    const heroes: Partial<Hero>[] = Array.from({ length: limit }).map((_, i) => ({ id: i + 1, name: `H${i+1}` })) as Hero[];
-    return of(heroes as Hero[]);
+  getPersonajes() {
+    const personajes: Personaje[] = [
+      {
+        id: '1',
+        nombre: 'Goku',
+        descripcion: 'Saiyajin poderoso',
+        dano: 9000,
+        velocidad: 8000,
+        imagen: 'goku.png'
+      },
+      {
+        id: '2',
+        nombre: 'Vegeta',
+        descripcion: 'Príncipe Saiyajin',
+        dano: 8500,
+        velocidad: 7800,
+        imagen: 'vegeta.png'
+      }
+    ];
+    return of(personajes);
   }
 }
 
@@ -20,34 +38,66 @@ describe('InicioPage', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      
       providers: [
         { provide: Personajes, useClass: PersonajesStub },
-        { provide: ModalController, useValue: { create: () => Promise.resolve({ present: () => Promise.resolve() }) } },
+        {
+          provide: ModalController,
+          useValue: {
+            create: () =>
+              Promise.resolve({
+                present: () => Promise.resolve()
+              })
+          }
+        },
         { provide: AngularDelegate, useValue: {} as any }
       ],
       imports: [InicioPage, RouterTestingModule],
       schemas: [NO_ERRORS_SCHEMA]
     });
+
     fixture = TestBed.createComponent(InicioPage);
     component = fixture.componentInstance;
   });
 
-  it('creates and loads heroes on init', () => {
+  // =================================================
+  //                TEST 1: Carga inicial
+  // =================================================
+  it('debe crearse y cargar personajes en ngOnInit', () => {
     expect(component).toBeTruthy();
+
     component.ngOnInit();
-    expect(component.cargando).toBeFalse();
-    expect(component.heroes.length).toBeGreaterThan(0);
+
+    expect(component.personajesRecientes.length).toBe(2);
+
+    // Validar que coinciden con el stub
+    const p = component.personajesRecientes[0];
+    expect(p.id).toBe('1');
+    expect(p.nombre).toBe('Goku');
+    expect(p.descripcion).toBe('Saiyajin poderoso');
+    expect(p.dano).toBe(9000);
+    expect(p.velocidad).toBe(8000);
+    expect(p.imagen).toBe('goku.png');
   });
 
-  it('scrolls to info section with IonContent', () => {
-    const contentSpy = jasmine.createSpyObj<IonContent>('IonContent', ['scrollToPoint']);
+  // =================================================
+  //                TEST 2: Scroll
+  // =================================================
+  it('debe hacer scroll a la sección info con IonContent', () => {
+    const contentSpy = jasmine.createSpyObj<IonContent>('IonContent', [
+      'scrollToPoint'
+    ]);
+
     (component as any).content = contentSpy;
-    component.infoSection = new ElementRef({ offsetTop: 120 });
+    component.infoSection = new ElementRef({ offsetTop: 250 });
+
     component.irAInfo();
+
     expect(contentSpy.scrollToPoint).toHaveBeenCalled();
+
     const args = contentSpy.scrollToPoint.calls.mostRecent().args;
-    expect(args[0]).toBe(0);
-    expect(args[2]).toBe(600);
+
+    expect(args[0]).toBe(0); // x
+    expect(args[2]).toBe(600); // duración
   });
+
 });
