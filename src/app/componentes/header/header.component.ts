@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,17 @@ import { Component, Input } from '@angular/core';
   standalone: false
 })
 export class HeaderComponent {
-  @Input() titulo: string = ''; 
-}
+  @Input() titulo: string = '';
 
+  constructor(private router: Router) {}
+
+  abrirPerfil() {
+    const userId = localStorage.getItem('usuario_id');
+
+    if (userId) {
+      this.router.navigate(['/perfil']);  // Usuario logueado
+    } else {
+      this.router.navigate(['/login']);   // Usuario NO logueado
+    }
+  }
+}

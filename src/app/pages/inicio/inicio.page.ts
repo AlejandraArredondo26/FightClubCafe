@@ -20,7 +20,7 @@ export class InicioPage implements OnInit {
   cargando = false;
   @ViewChild('infoSection') infoSection?: ElementRef;
   @ViewChild(IonContent) content?: IonContent;
-  personajesRecientes:Personaje[]= [];
+  personajesRecientes: Personaje[] = [];
 
   constructor(private personajesSrv: Personajes, private modalCtrl: ModalController) { }
 
@@ -39,12 +39,12 @@ export class InicioPage implements OnInit {
 
   ngOnInit() {
     //Realizamos la llamada a la función getPersonajes
-     this.personajesSrv.getPersonajes().subscribe((respuesta) => {
-      respuesta.forEach(personaje=>{
+    this.personajesSrv.getPersonajes().subscribe((respuesta) => {
+      respuesta.forEach(personaje => {
         this.personajesRecientes.push(<Personaje>personaje);
       })
     });
-  
+
   }
 
   irAInfo() {
@@ -54,14 +54,25 @@ export class InicioPage implements OnInit {
     } catch { }
   }
 
-  async abrirModal(id:string) {
-     const modal = await this.modalCtrl.create({
-       component: DetalleComponent,
-       componentProps: { id },
-       backdropDismiss: true,
-       cssClass: 'detalle-modal'
-     });
-     await modal.present();
+  async abrirModal(id: string) {
+    const modal = await this.modalCtrl.create({
+      component: DetalleComponent,
+      componentProps: { id },
+      backdropDismiss: true,
+      cssClass: 'detalle-modal'
+    });
+    await modal.present();
   }
+
+  async verMas() {
+    const modal = await this.modalCtrl.create({
+      component: (await import('src/app/componentes/historia/historia.component')).HistoriaComponent,
+      cssClass: 'detalle-modal',
+      backdropDismiss: true
+    });
+
+    await modal.present();
+  }
+
 
 }

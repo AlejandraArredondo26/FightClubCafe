@@ -108,3 +108,11 @@ ion-textarea, ion-input { --color: var(--ion-text-color); }
   border-radius: 8px;
   padding: 2px 6px;
 }
+.perfil-toast {
+  --background: #3a2018;
+  --color: #ffe8c7;
+  font-family: 'VT323', monospace;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}

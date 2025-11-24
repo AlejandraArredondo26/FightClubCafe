@@ -1,0 +1,55 @@
+.historia-bg {
+  --background: none;
+  background:
+    linear-gradient(180deg, rgba(27,15,11,.75), rgba(43,26,20,.92)),
+    url('/assets/images/tavern.jpeg') center/cover no-repeat fixed;
+  font-family: 'VT323', monospace;
+  color: var(--ion-text-color);
+}
+
+/* Header oscuro estilo taberna */
+ion-header {
+  --background: rgba(30, 18, 14, 0.9);
+  color: #ffddb1;
+  border-bottom: 2px solid #8c5237;
+}
+
+ion-title {
+  font-family: 'VT323', monospace;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+/* Textos */
+h2 {
+  font-family: 'VT323', monospace;
+  color: #ffb74d;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+}
+
+p,
+ul li {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: #ffe8c7;
+  line-height: 1.4;
+}
+
+/* Lista */
+ul {
+  padding-left: 18px;
+}
+
+ul li {
+  margin-bottom: 6px;
+}
+
+/* Botón cerrar */
+ion-button {
+  --background: #8c5237;
+  --color: #fff1dc;
+  --border-radius: 10px;
+  font-family: 'VT323', monospace;
+}

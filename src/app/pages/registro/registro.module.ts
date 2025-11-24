@@ -6,6 +6,7 @@ import { RegistroPageRoutingModule } from './registro-routing.module';
 import { RegistroPage } from './registro.page';
 import { ComponentesModule } from 'src/app/componentes/componentes-module';
 
+
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, IonicModule, ComponentesModule, RegistroPageRoutingModule],
   declarations: [RegistroPage]

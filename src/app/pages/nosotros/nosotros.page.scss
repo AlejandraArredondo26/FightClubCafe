@@ -1,0 +1,130 @@
+/* ------------------------------
+   Página: Nosotros
+   Estilo cálido y cozy
+--------------------------------*/
+
+/* Ajustes generales */
+:host {
+  display: block;
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 220px;
+  margin: 16px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55) saturate(1.1);
+  }
+
+  .banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffdca8;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+  }
+}
+
+/* Info Cards */
+.info-card {
+  background: var(--app-surface);
+  border-radius: 16px;
+  border: 1px solid #e3b08f;
+  margin: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+
+  ion-card-title {
+    color: #ffb74d;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  ion-card-content {
+    p {
+      color: #f1d3b3;
+      line-height: 1.4;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+/* Card de cada integrante */
+.perfil-card {
+  background-color: var(--app-surface);
+  border-radius: 16px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(216, 150, 110, 0.45);
+  box-shadow: var(--cozy-elevation);
+
+  ion-avatar {
+    img {
+      border: 2px solid #8c5237;
+      border-radius: 50%;
+    }
+  }
+
+  ion-label {
+    h2 {
+      color: #ffdca8;
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 1.2rem;
+    }
+
+    p {
+      color: #e6b88d;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* Sección de redes */
+.social-section {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 30px;
+
+  h3 {
+    color: #ffb74d;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    ion-icon {
+      font-size: 28px;
+      color: #ffb74d;
+      transition: transform 0.25s ease, color 0.2s ease;
+
+      &:hover {
+        transform: scale(1.2);
+        color: #ffe0b2;
+      }
+    }
+  }
+}

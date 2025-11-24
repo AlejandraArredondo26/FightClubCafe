@@ -14,7 +14,7 @@
 
       <!-- ITEM 1 -->
       <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="viewerOpen = true; currentSrc='assets/images/tavern.jpeg'">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/tavern.jpeg')">
           <div class="iso-shadow"></div>
           <ion-img src="assets/images/tavern.jpeg" class="pixel-img"></ion-img>
         </ion-card>
@@ -22,7 +22,7 @@
 
       <!-- ITEM 2 -->
       <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="viewerOpen = true; currentSrc='assets/images/1.jpeg'">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/1.jpeg')">
           <div class="iso-shadow"></div>
           <ion-img src="assets/images/1.jpeg" class="pixel-img"></ion-img>
         </ion-card>
@@ -30,7 +30,7 @@
 
       <!-- ITEM 3 -->
       <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="viewerOpen = true; currentSrc='assets/images/2.jpeg'">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/2.jpeg')">
           <div class="iso-shadow"></div>
           <ion-img src="assets/images/2.jpeg" class="pixel-img"></ion-img>
         </ion-card>
@@ -38,27 +38,109 @@
 
       <!-- ITEM 4 -->
       <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="viewerOpen = true; currentSrc='assets/images/3.jpeg'">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/3.jpeg')">
           <div class="iso-shadow"></div>
           <ion-img src="assets/images/3.jpeg" class="pixel-img"></ion-img>
         </ion-card>
       </ion-col>
 
-      
+      <!-- ITEM 5 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/4.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/4.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 6 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/5.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/5.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 7 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/6.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/6.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 8 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/7.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/7.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 9 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/8.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/8.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 10 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/9.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/9.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 11 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/10.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/10.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 12 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/11.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/11.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
+      <!-- ITEM 13 -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
+        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/12.jpeg')">
+          <div class="iso-shadow"></div>
+          <ion-img src="assets/images/12.jpeg" class="pixel-img"></ion-img>
+        </ion-card>
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 
   <!-- Modal visor -->
   <ion-modal [isOpen]="viewerOpen" (didDismiss)="viewerOpen = false" class="tavern-modal">
     <ng-template>
+
       <ion-header translucent>
         <ion-toolbar color="dark">
+
+          <!-- BOTÓN DESCARGAR -->
+          <ion-buttons slot="start">
+            <ion-button (click)="descargarImagen()">
+              <ion-icon slot="icon-only" name="download-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+
           <ion-title>Vista previa</ion-title>
+
           <ion-buttons slot="end">
             <ion-button (click)="viewerOpen = false">
               <ion-icon slot="icon-only" name="close"></ion-icon>
             </ion-button>
           </ion-buttons>
+
         </ion-toolbar>
       </ion-header>
 
@@ -66,7 +148,13 @@
         <div class="viewer-inner">
           <img [src]="currentSrc" class="pixel-img big" />
         </div>
+
+        <!-- PIE DE PÁGINA (Descripción dinámica) -->
+        <div class="image-footer">
+          {{ currentDescripcion }}
+        </div>
       </ion-content>
+
     </ng-template>
   </ion-modal>
 

@@ -1,7 +1,10 @@
 {
   "name": "fightClub",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular",
   "server": {

@@ -1,0 +1,32 @@
+<app-header titulo="Mi Perfil"></app-header>
+
+<ion-content>
+
+  <div class="perfil-container" *ngIf="usuario">
+
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+      <ion-input type="email" [(ngModel)]="usuario.correo"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" (click)="guardarCambios()">
+      Guardar Cambios
+    </ion-button>
+
+    <ion-button expand="block" color="danger" (click)="logout()">
+      Cerrar Sesión
+    </ion-button>
+
+  </div>
+
+  <div *ngIf="!usuario" style="text-align:center; margin-top: 40px;">
+    <p>No hay usuario logeado.</p>
+    <ion-button routerLink="/login">Ir al Login</ion-button>
+  </div>
+
+</ion-content>

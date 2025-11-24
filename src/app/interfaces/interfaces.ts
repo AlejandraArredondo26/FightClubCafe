@@ -35,3 +35,43 @@ export interface Personaje {
   imagen: string;
 }
 
+
+export interface Usuario {
+  id: string;
+  nombre: string;
+  correo: string;
+  personaje_id: string;
+}
+
+export interface Usuario {
+  id: string;
+  nombre: string;
+  correo: string;
+  personaje_id: string;
+}
+
+export interface ForoComentario {
+  id: string;
+  usuario_id: string;
+  nombre: string;
+  comentario: string;
+  createdAt: number;
+
+  ui: {
+    showReplyForm: boolean;
+  };
+}
+
+
+
+export interface ForoRespuesta {
+  id: string;
+  thread_id: string;
+  usuario_id: string;
+  nombre: string;
+  texto: string;
+  createdAt: number;
+}
+
+
+

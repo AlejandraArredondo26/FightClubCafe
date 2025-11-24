@@ -16,3 +16,17 @@ ion-toolbar {
 ion-button { --color: #ffffff; --padding-start: 8px; --padding-end: 8px; }
 ion-button ion-icon { font-size: 22px; }
 ion-toolbar ion-menu-button { color: #ffffff; }
+
+.notif-btn {
+  position: relative;
+}
+
+.noti-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 50%;
+}
+

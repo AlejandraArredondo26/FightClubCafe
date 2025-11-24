@@ -7,29 +7,46 @@
         <ion-card-title>Únete a Fight Club Cafe</ion-card-title>
         <ion-card-subtitle>Es gratis y rápido</ion-card-subtitle>
       </ion-card-header>
+
       <ion-card-content>
         <form [formGroup]="form" (ngSubmit)="crearCuenta()" novalidate>
+
           <div class="field">
             <ion-icon name="person-outline"></ion-icon>
             <input type="text" placeholder="Tu nombre" formControlName="nombre" />
           </div>
+
           <div class="field">
             <ion-icon name="mail-outline"></ion-icon>
             <input type="email" placeholder="correo@ejemplo.com" formControlName="email" />
           </div>
+
           <div class="field">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input type="password" placeholder="••••••" formControlName="password" />
           </div>
 
-          <ion-button expand="block" type="submit" class="submit-btn" [disabled]="form.invalid">Crear cuenta</ion-button>
+          <!-- NUEVO: Selección de personaje -->
+          <ion-item class="select-field">
+            <ion-label>Personaje</ion-label>
+            <ion-select interface="alert" formControlName="personaje_id">
+              <ion-select-option *ngFor="let p of personajes" [value]="p.id">
+                {{ p.nombre }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" class="submit-btn" [disabled]="form.invalid">
+            Crear cuenta
+          </ion-button>
+
           <div class="auth-links">
             <span>¿Ya tienes cuenta?</span>
             <a routerLink="/login">Iniciar sesión</a>
           </div>
+
         </form>
       </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
-
