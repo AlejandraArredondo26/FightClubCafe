@@ -2,117 +2,33 @@
 
 <ion-content [fullscreen]="true" class="ion-padding wood-bg">
 
-  <!-- Encabezado -->
   <div class="title-row">
     <h2 class="tavern-title">Galería de Personajes</h2>
     <p class="subtitle">Estética 2.5D • 16-bits • Taberna Cafetería • Tonos cafés cálidos</p>
   </div>
 
-  <!-- Grid de imágenes -->
   <ion-grid fixed class="gallery-grid">
     <ion-row>
 
-      <!-- ITEM 1 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/tavern.jpeg')">
+      <!-- Todas las tarjetas se mantienen igual -->
+      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3" *ngFor="let img of [
+        'assets/images/tavern.jpeg',
+        'assets/images/1.jpeg',
+        'assets/images/2.jpeg',
+        'assets/images/3.jpeg',
+        'assets/images/4.jpeg',
+        'assets/images/5.jpeg',
+        'assets/images/6.jpeg',
+        'assets/images/7.jpeg',
+        'assets/images/8.jpeg',
+        'assets/images/9.jpeg',
+        'assets/images/10.jpeg',
+        'assets/images/11.jpeg',
+        'assets/images/12.jpeg'
+      ]">
+        <ion-card class="pixel-card" (click)="abrirImagen(img)">
           <div class="iso-shadow"></div>
-          <ion-img src="assets/images/tavern.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 2 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/1.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/1.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 3 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/2.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/2.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 4 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/3.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/3.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 5 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/4.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/4.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 6 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/5.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/5.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 7 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/6.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/6.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 8 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/7.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/7.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 9 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/8.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/8.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 10 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/9.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/9.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 11 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/10.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/10.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 12 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/11.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/11.jpeg" class="pixel-img"></ion-img>
-        </ion-card>
-      </ion-col>
-
-      <!-- ITEM 13 -->
-      <ion-col size="12" sizeSm="6" sizeMd="4" sizeLg="3">
-        <ion-card class="pixel-card" (click)="abrirImagen('assets/images/12.jpeg')">
-          <div class="iso-shadow"></div>
-          <ion-img src="assets/images/12.jpeg" class="pixel-img"></ion-img>
+          <ion-img [src]="img" class="pixel-img"></ion-img>
         </ion-card>
       </ion-col>
 
@@ -126,12 +42,7 @@
       <ion-header translucent>
         <ion-toolbar color="dark">
 
-          <!-- BOTÓN DESCARGAR -->
-          <ion-buttons slot="start">
-            <ion-button (click)="descargarImagen()">
-              <ion-icon slot="icon-only" name="download-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
+          <!-- ❌ Botón de descarga eliminado -->
 
           <ion-title>Vista previa</ion-title>
 
@@ -149,7 +60,6 @@
           <img [src]="currentSrc" class="pixel-img big" />
         </div>
 
-        <!-- PIE DE PÁGINA (Descripción dinámica) -->
         <div class="image-footer">
           {{ currentDescripcion }}
         </div>

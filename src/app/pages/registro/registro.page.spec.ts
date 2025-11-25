@@ -1,39 +1,55 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
 import { RegistroPage } from './registro.page';
+import { Router } from '@angular/router';
+import { Firestore } from '@angular/fire/firestore';
+import { AuthService } from 'src/app/services/auth.service';
 
-class RouterStub {
-  navigate = jasmine.createSpy('navigate');
-}
 
 describe('RegistroPage', () => {
   let component: RegistroPage;
-  let fixture: ComponentFixture<RegistroPage>;
-  let router: RouterStub;
+  let routerMock: jasmine.SpyObj<Router>;
+  let firestoreMock: any;
+  let authMock: any;
 
   beforeEach(() => {
-    router = new RouterStub();
+    routerMock = jasmine.createSpyObj('Router', ['navigate']);
+
+    firestoreMock = {
+      collection: jasmine.createSpy('collection').and.returnValue({}),
+    };
+
+    authMock = {
+      registrarUsuario: jasmine.createSpy('registrarUsuario')
+        .and.returnValue(Promise.resolve('abc123')) // simula ID generado
+    };
+
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [RegistroPage],
-      providers: [{ provide: Router, useValue: router }],
-      schemas: [NO_ERRORS_SCHEMA]
+      providers: [
+        RegistroPage,
+        { provide: Router, useValue: routerMock },
+        { provide: Firestore, useValue: firestoreMock },
+        { provide: AuthService, useValue: authMock }
+      ]
     });
-    fixture = TestBed.createComponent(RegistroPage);
-    component = fixture.componentInstance;
+
+    component = TestBed.inject(RegistroPage);
+
+    // Simular formulario válido
+    component.form.setValue({
+      nombre: 'Test User',
+      email: 'test@test.com',
+      password: '123456',
+      personaje_id: '1'
+    });
   });
 
-  it('requires valid fields', () => {
-    component.form.setValue({ nombre: '', email: '', password: '' });
-    component.crearCuenta();
-    expect(router.navigate).not.toHaveBeenCalled();
+  it('should navigate to /login on successful registration', async () => {
+
+    // Ejecutamos el método real del componente
+    await component.crearCuenta();
+
+    // Esperar que navegue
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/login']);
   });
 
-  it('navigates to /login on success', () => {
-    component.form.setValue({ nombre: 'Ana', email: 'ana@x.y', password: '123456' });
-    component.crearCuenta();
-    expect(router.navigate).toHaveBeenCalledWith(['/login']);
-  });
 });

@@ -1,16 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { of } from 'rxjs';
 import { GaleriaPage } from './galeria.page';
-import { Personajes } from 'src/app/services/personajes';
-import { Hero } from 'src/app/interfaces/interfaces';
-
-class PersonajesStub {
-  getHeroes(limit: number) {
-    const heroes: Partial<Hero>[] = Array.from({ length: limit }).map((_, i) => ({ id: i + 1, name: `H${i+1}` })) as Hero[];
-    return of(heroes as Hero[]);
-  }
-}
 
 describe('GaleriaPage', () => {
   let component: GaleriaPage;
@@ -19,15 +9,34 @@ describe('GaleriaPage', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [GaleriaPage],
-      providers: [{ provide: Personajes, useClass: PersonajesStub }],
       schemas: [NO_ERRORS_SCHEMA]
     });
+
     fixture = TestBed.createComponent(GaleriaPage);
     component = fixture.componentInstance;
-    component.ngOnInit();
+
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the page', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should open the viewer with correct image and description', () => {
+    const src = 'assets/images/1.jpeg';
+
+    component.abrirImagen(src);
+
+    expect(component.currentSrc).toBe(src);
+    expect(component.currentDescripcion).toBe(component.descripciones[src]);
+    expect(component.viewerOpen).toBeTrue();
+  });
+
+  it('should show fallback description when image has no description', () => {
+    const src = 'assets/images/no-existe.jpeg';
+
+    component.abrirImagen(src);
+
+    expect(component.currentDescripcion).toBe('Imagen sin descripción.');
   });
 });

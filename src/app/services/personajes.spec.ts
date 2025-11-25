@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { firebaseConfig } from 'src/environments/firebaseConfig';
+import { firstValueFrom } from 'rxjs';
 
 describe('Personajes service', () => {
   let service: Personajes;
@@ -29,45 +30,23 @@ describe('Personajes service', () => {
   // ==========================================
   //         getPersonajes() TEST REAL
   // ==========================================
-  it('getPersonajes debe emitir un array', (done) => {
+  it('getPersonajes debe emitir un array', async () => {
     const obs$ = service.getPersonajes();
+    const data = await firstValueFrom(obs$);
 
-    expect(obs$).toBeTruthy();
-    expect(typeof obs$.subscribe).toBe('function');
-
-    obs$.subscribe({
-      next: (data) => {
-        expect(Array.isArray(data)).toBeTrue();
-        done();
-      },
-      error: (e) => {
-        fail('Error en getPersonajes: ' + e);
-        done();
-      }
-    });
+    expect(Array.isArray(data)).toBeTrue();
   });
 
   // ==========================================
   //    getPersonajesDetalle(id) TEST REAL
   // ==========================================
-  it('getPersonajesDetalle debe emitir un objeto', (done) => {
+  it('getPersonajesDetalle debe emitir un objeto', async () => {
     const idPrueba = 'personaje1';
 
     const obs$ = service.getPersonajesDetalle(idPrueba);
+    const data = await firstValueFrom(obs$);
 
-    expect(obs$).toBeTruthy();
-    expect(typeof obs$.subscribe).toBe('function');
-
-    obs$.subscribe({
-      next: (data) => {
-        expect(typeof data).toBe('object');
-        done();
-      },
-      error: (e) => {
-        fail('Error en getPersonajesDetalle: ' + e);
-        done();
-      }
-    });
+    expect(typeof data).toBe('object');
   });
 
 });
