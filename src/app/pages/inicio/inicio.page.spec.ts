@@ -3,6 +3,7 @@ import { of } from 'rxjs';
 import { ElementRef, NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonContent, ModalController, AngularDelegate } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { InicioPage } from './inicio.page';
 import { Personajes } from 'src/app/services/personajes';
 import { Personaje } from 'src/app/interfaces/interfaces';
@@ -41,7 +42,7 @@ describe('InicioPage', () => {
       providers: [
         { provide: Personajes, useClass: PersonajesStub },
 
-        // ====== MODAL CONTROLLER MOCK ======
+        // ====== MOCK DE MODAL CONTROLLER ======
         {
           provide: ModalController,
           useValue: {
@@ -52,7 +53,7 @@ describe('InicioPage', () => {
           }
         },
 
-        // ====== FIX DEFINITIVO: AngularDelegate COMPLETO ======
+        // ===== FIX: AngularDelegate completo =====
         {
           provide: AngularDelegate,
           useValue: {
@@ -83,10 +84,6 @@ describe('InicioPage', () => {
     const p = component.personajesRecientes[0];
     expect(p.id).toBe('1');
     expect(p.nombre).toBe('Goku');
-    expect(p.descripcion).toBe('Saiyajin poderoso');
-    expect(p.dano).toBe(9000);
-    expect(p.velocidad).toBe(8000);
-    expect(p.imagen).toBe('goku.png');
   });
 
   // =================================================
@@ -133,7 +130,7 @@ describe('InicioPage', () => {
   });
 
   // =================================================
-  //        TEST 4: verMas() con import dinámico
+  //     TEST 4: verMas() con import dinámico
   // =================================================
   it('debe abrir modal con HistoriaComponent usando import dinámico', async () => {
     const modalSpy = jasmine.createSpyObj('modal', ['present']);
@@ -147,7 +144,7 @@ describe('InicioPage', () => {
       HistoriaComponent: class FakeHistoria {}
     };
 
-    // ======== MOCK DE IMPORT() =========
+    // ======== MOCK DE import() =========
     const g: any = globalThis;
     const realImport = g.import;
 

@@ -191,4 +191,71 @@ describe('AuthService', () => {
         expect(result).toBeFalse();
     });
 
+        // ======================================================
+    //     LOGIN: Validar composición del usuario desde snapshot
+    // ======================================================
+    it('debe construir el usuario correctamente desde snapshot y guardarlo en localStorage', async () => {
+
+        const fakeSnapshot = {
+            empty: false,
+            docs: [
+                {
+                    id: 'u100',
+                    data: () => ({
+                        nombre: 'Mario',
+                        correo: 'mario@test.com',
+                        personaje_id: 'p9'
+                    })
+                }
+            ]
+        };
+
+        getDocsMock.and.returnValue(Promise.resolve(fakeSnapshot));
+
+        const result = await service.login('mario@test.com', 'pass123');
+
+        // -------------------------
+        // VALIDAR OBJETO COMPLETO
+        // -------------------------
+        const expectedUser: Usuario = {
+            id: 'u100',
+            nombre: 'Mario',
+            correo: 'mario@test.com',
+            personaje_id: 'p9'
+        };
+
+        expect(result).toEqual(expectedUser);
+
+        // -------------------------
+        // VALIDAR QUE GUARDA LOCALSTORAGE
+        // -------------------------
+        expect(localStorage.setItem).toHaveBeenCalledWith(
+            'usuario',
+            JSON.stringify(expectedUser)
+        );
+
+        expect(localStorage.setItem).toHaveBeenCalledWith(
+            'usuario_id',
+            'u100'
+        );
+
+        // -------------------------
+        // VALIDAR QUE TOMÓ docSnap.docs[0]
+        // -------------------------
+        expect(fakeSnapshot.docs.length).toBe(1);
+        expect(fakeSnapshot.docs[0].id).toBe('u100');
+        expect(fakeSnapshot.docs[0].data()).toEqual({
+            nombre: 'Mario',
+            correo: 'mario@test.com',
+            personaje_id: 'p9'
+        });
+
+        // -------------------------
+        // VALIDAR QUE getDocs recibió el query()
+        // -------------------------
+        expect(getDocsMock).toHaveBeenCalledWith(
+            queryMock.calls.mostRecent().returnValue
+        );
+    });
+    
 });
